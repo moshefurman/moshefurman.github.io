@@ -85,11 +85,11 @@
         function CreateTable() {
 	  
             var CountPalyer = document.getElementById("count").value;
-            document.getElementById("tbl").rows[0].cells[0].innerHTML = ((document.getElementsByName("Player").length)+CountPlayer);
-		if (((document.getElementsByName("Player").length)+CountPlayer) > document.getElementsByName("radAnswer").length){
-			return;
-		}
-		
+	    
+	    if ((document.getElementsByName("Player").length) + Number(CountPalyer) > document.getElementsByName("radAnswer").length){
+		return;
+	    }
+	
             for (i = 0; i < CountPalyer; i++) {
                 var input = document.createElement('input'); 
                 input.type = "text";
