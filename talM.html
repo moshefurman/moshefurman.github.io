@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+		<title>Tal Mizrahi</title>
+		<style>
+			table, td {border: 1px solid black}
+		</style>
+    </head>
+
+  <body>
+  
+	 <table id="tbl" border="10">
+	 
+		<thead>
+			<tr>
+				<td><input type="Table" id = "chckHead" /></td>
+				<td>House</td>
+				<td>Player</td>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td><input type="radio" class = "radio" name="radAnswer" value="1" /></td>
+				<td>Targaryen</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td><input type="radio" class = "radio" name="radAnswer" value="2" /></td>
+				<td>House2</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td><input type="radio" class = "radio" name="radAnswer" value="3" /></td>
+				<td>House3</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td><input type="radio" class = "radio" name="radAnswer" value="4" /></td>
+				<td>House4</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td><input type="radio" class = "radio" name="radAnswer" value="5" /></td>
+				<td>House5</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td><input type="radio" class = "radio" name="radAnswer" value="6" /></td>
+				<td>House6</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td><input type="radio" class = "radio" name="radAnswer" value="7" /></td>
+				<td>House7</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td><input type="radio" class = "radio" name="radAnswer" value="8" /></td>
+				<td>House8</td>
+				<td></td>
+			</tr>
+
+		</tbody>
+	</table>
+  
+    
+  	<P>
+		CountPlayers: <input type="text" class="textfield" value="" id="count"  onkeypress="return isNumber(event)" /> 
+		<button onclick="CreateTable()">Add</button>
+		<button onclick="myFunction()">Try it</button>
+	</P>
+	<P><div id="container"></div></P>
+    
+</body>
+    <script>
+        function CreateTable() {
+            var CountPalyer = document.getElementById("count").value;
+             
+            for (i = 0; i < CountPalyer; i++) {
+                var input = document.createElement('input'); 
+                input.type = "text";
+                input.name = "Player";
+                input.size = "30";
+				var nodelist = document.getElementsByName("Player").length;			
+				input.setAttribute("value","Player " + (nodelist+1));
+				
+                var container = document.getElementById("container");
+                container.appendChild(input);	
+            }
+        }
+
+		function getRadioCheckedValue(radio_name){
+			var oRadio = document.getElementsByName(radio_name);
+		 
+			for(var i = 0; i < oRadio.length; i++){
+				if(oRadio[i].checked){
+				return oRadio[i].value;
+			  }
+		   }
+		   return '';
+		}
+
+
+		function myFunction() {
+			Clearitem();
+			
+			var arr = []
+			while(arr.length < (document.getElementsByName("Player").length)){
+				var r = Math.floor(Math.random()*document.getElementsByName("Player").length) + 1;
+				if(arr.indexOf(r) === -1) arr.push(r);
+			}
+
+			var arr2 = []
+			
+			var tar = getRadioCheckedValue("radAnswer");
+			if (tar != ''){
+				arr2[0] = Number(tar) ;
+			}
+			
+			while(arr2.length < (document.getElementsByName("Player").length)){
+				var r = Math.floor(Math.random()*document.getElementsByName("radAnswer").length)+1 ;
+				if(arr2.indexOf(r) === -1) arr2.push(r);
+			}
+
+			for (i = 0; i < (document.getElementsByName("Player").length); i++) {
+				document.getElementById("tbl").rows[arr2[i]].cells[2].innerHTML = document.getElementsByName("Player")[arr[i]-1].value;
+			}			
+		}
+
+		function Clearitem(){
+			for (i = 1; i < (document.getElementsByName("radAnswer").length+1); i++)  {	
+				document.getElementById("tbl").rows[i].cells[2].innerHTML = "";
+			}
+		}
+		
+		function isNumber(evt) {
+			evt = (evt) ? evt : window.event;
+			var charCode = (evt.which) ? evt.which : evt.keyCode;
+			if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+			return false;
+		}
+    return true;
+}
+    </script>
+  
+</html>
