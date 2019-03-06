@@ -1,0 +1,63 @@
+<script type="text/javascript">
+        $("#charidy").click(function () {
+            var teamsCount = 0;
+            var teamsArr = [];
+            var offset = 0;
+            var goalsCount = 0;
+            var totalGoals = 0;
+            var totalDonated = 0;
+            var finished = 0;
+            var rest = 0;
+
+            getTeams();
+            
+            function getTeams() {
+                $.ajax({
+                    cache: false,
+                    dataType: "json",
+                    url:'https://api.charidy.com/api/v1/campaign/5167/teams?limit=100&sort=&offset=3900&q=&skip_parent=1',
+                    success: function (data) {
+                        teamsArr.push(data);
+                        if (offset < 3900) {
+                            offset += 100;
+                            getTeams();
+                        } else {
+                            $.each(teamsArr, function () {
+                                $.each(this.data, function () {
+                                    goalsCount++;
+                                    totalGoals += this.attributes.goal;
+                                    totalDonated += this.attributes.donated;
+                                    if (this.attributes.donated >= this.attributes.goal) {
+                                        finished++;
+                                    } else {
+                                        rest += this.attributes.goal - this.attributes.donated;
+                                    }
+
+                                });
+                            });
+
+                            $("#goalsCount span").html(goalsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                            $("#totalGoals span").html(totalGoals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                            $("#totalDonated span").html(totalDonated.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                            $("#finished span").html(finished.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                            $("#rest span").html(rest.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+
+וזה ה-html
+
+<div class="jumbotron">
+    <h1>יזכור אהבתו</h1>
+    <p><a id="charidy" class="btn btn-primary btn-lg">חישוב</a></p>
+
+    <div id="goalsCount">מספר התחיבויות <span></span></div>
+    <div id="totalGoals">סך התחיבויות <span></span></div>
+    <div id="totalDonated">סך תרומות להתחיבויות <span></span></div>
+    <div id="finished">התחיבויות שהסתימו <span></span></div>
+    <div id="rest">סך התחיבויות שנותר לגייס <span></span></div>
+</div>
