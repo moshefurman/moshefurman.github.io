@@ -83,8 +83,13 @@
 </body>
     <script>
         function CreateTable() {
+	  
             var CountPalyer = document.getElementById("count").value;
-             
+            
+		if ((document.getElementsByName("Player").length)+CountPlayer) > document.getElementsByName("radAnswer").length){
+			return;
+		}
+		
             for (i = 0; i < CountPalyer; i++) {
                 var input = document.createElement('input'); 
                 input.type = "text";
