@@ -72,18 +72,18 @@ header a {
 /* Add everything below here */
 
 #hero {
-    background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.75)), url('http://moshe.tech/image/image1.jpg');
+    background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.75)), url('https://moshe.tech/image/image1.jpg');
 }
 
 #Scripts {
-    background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.75)), url('http://moshe.tech/image/image1.jpg');
+    background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.75)), url('https://moshe.tech/image/image1.jpg');
 }
 
 
 #about {
-    background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.75)), url('http://moshe.tech/image/image1.jpg');
+    background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.75)), url('http://moshes.tech/image/image1.jpg');
 }
 
 #contact {
-    background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.75)), url('http://moshe.tech/image/image1.jpg');
+    background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.75)), url('https://moshe.tech/image/image1.jpg');
 }
